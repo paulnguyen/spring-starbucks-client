@@ -25,7 +25,26 @@ import java.util.Arrays;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
+/*
+    * https://stackoverflow.com/questions/25692735/simple-example-of-spring-security-with-thymeleaf
+
+    Here is the solution that implements it exactly the way OP wanted:
+
+        Replace @EnableWebSecurity with @EnableWebMvcSecurity (that's what OP is missing)
+        Use th:action on <form> tag
+
+    When you use @EnableWebMvcSecurity Spring Security registers the CsrfRequestDataValueProcessor,
+    and when you use th:action thymeleaf uses it's getExtraHiddenFields method to add, well, extra
+    hidden fields to the form. And the csrf is the extra hidden field.
+
+    Since Spring Security 4.0, @EnableWebMvcSecurity has been deprecated and only @EnableWebSecurity
+    is necessary. The _csrf protection continues to apply automatically.
+
+ */
+
+
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     /*
@@ -53,7 +72,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
     /*
 
@@ -97,9 +115,12 @@ public class SecurityConfig {
      */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable(); // disable CSRF for POSTS
         SecurityFilterChain ret = http
-                .formLogin(withDefaults())
+                .formLogin(
+                        form -> form
+                                .loginPage("/login")
+                                .permitAll()
+                )
                 .authorizeRequests()
                 .antMatchers("/console").hasRole("USER")
                 .antMatchers("/").permitAll()
@@ -109,3 +130,4 @@ public class SecurityConfig {
     }
 
 }
+
