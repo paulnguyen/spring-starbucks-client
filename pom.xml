@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>spring-starbucks-client</artifactId>
-    <version>1.0</version>
+    <version>3.0</version>
     <name>spring-starbucks-client</name>
     <description>spring-starbucks-client</description>
     <properties>
@@ -43,7 +43,16 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Manually Added Dependencies -->
+        <!-- Manually Added for Spring Security 
+            Default User Name:  user
+            Default User Password: (look for generated password during startup logs)
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- Manually Added Dependencies for XML Processing -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
