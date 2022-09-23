@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>spring-starbucks-client</artifactId>
-    <version>3.0</version>
+    <version>3.1</version>
     <name>spring-starbucks-client</name>
     <description>spring-starbucks-client</description>
     <properties>
