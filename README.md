@@ -2,7 +2,6 @@
 ## Spring Starbucks Client
 
 
-
 ### Version 1.0
 
 * Initial Implementation of Starbucks REST API Client
@@ -21,6 +20,7 @@
 * Default Authentication Web Form Injected 
 * Default User Name:  user
 * Default User Password: (look for generated password during startup logs)
+* Note: CSRF Token not included in Web Form (Fails on Startup)
 	
 	By doing nothing more than adding the security starter to the project build, 
 	you get the following security features:
@@ -50,30 +50,4 @@
 	    * Relational Databases with JDBC Authentication
 	    * Custom data stores with UserDetailsService
 	    * LDAP storage with LDAP Authentication
-
-
-### Version 3.2
-
-* Added Support for CSRF Protection
-* Added Home Controller (Redirects to Console)
-* Added Login Controller & Custom Login Page
-
-	Cross Site Request Forgery (CSRF)
-
-	* https://docs.spring.io/spring-security/reference/features/exploits/csrf.html
-	* https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html
-
-	Custom Login Form Example
-
-	* https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/form.html
-	* https://codepen.io/khadkamhn/pen/ZGvPLo
-
-
-
-
-
-
-
-
-
 
